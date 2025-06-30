@@ -1,0 +1,4 @@
+pytest
+allure-pytest
+selene>=2.0.b4
+allure-python-commons~=2.14.3
