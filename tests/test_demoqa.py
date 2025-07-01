@@ -25,6 +25,5 @@ def test_registration(open_browser):
         '13 July,1993',
         'English',
         'Sports',
-        'test.jpg',
         'Earth, Eurasia 4.8.15.22.43',
         'Haryana Karnal')
