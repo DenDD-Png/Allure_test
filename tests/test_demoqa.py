@@ -2,6 +2,8 @@
 from demoqa_test.page.registration_page import RegistrationPage
 from demoqa_test.model.conftest import open_browser
 
+
+
 def test_registration(open_browser):
     registration_page = RegistrationPage()
 

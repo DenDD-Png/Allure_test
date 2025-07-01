@@ -3,7 +3,13 @@ from selene.support import by
 from selene.support.conditions import be
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
+import pytest
 
+@pytest.fixture(scope="function", autouse=True)
+def open_browser():
+    browser.open('https://demoqa.com/automation-practice-form')
+    yield
+    browser.quit()
 
 def test_dynamic_steps():
     with allure.step("Открываем главную страницу"):
