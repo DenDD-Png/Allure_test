@@ -1,10 +1,8 @@
-from selene import browser
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
-from selenium.webdriver.remote.remote_connection import ClientConfig
-from utils import attach
+
 
 
 
@@ -28,14 +26,10 @@ def setup_browser():
     }
     options.capabilities.update(selenoid_capabilities)
 
-    config = ClientConfig()
-    config.keep_alive = True
-
     driver = webdriver.Remote(
         command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-
 
     browser = Browser(Config(driver))
     yield browser
