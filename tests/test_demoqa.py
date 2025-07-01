@@ -1,12 +1,8 @@
 from selene import browser
 from demoqa_test.page.registration_page import RegistrationPage
 import pytest
+from demoqa_test.model.conftest import open_browser
 
-@pytest.fixture(scope="function", autouse=True)
-def open_browser():
-    browser.open('https://demoqa.com/automation-practice-form')
-    yield
-    browser.quit()
 
 def test_registration(open_browser):
     registration_page = RegistrationPage()
