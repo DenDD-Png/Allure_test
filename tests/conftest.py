@@ -6,30 +6,29 @@ from utils import attach
 from dotenv import load_dotenv
 import os
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function')
 def setup_browser():
     options = Options()
-    selenoid_capabilities = {
+
+    capabilities = {
         "browserName": "chrome",
-        "browserVersion": "128.0",
+        "browserVersion": "127.0",
         "selenoid:options": {
             "enableVNC": True,
+            "enableLog": True,
             "enableVideo": True,
-            "enableLog": True
+            "sessionTimeout": "5m"
         }
     }
 
-    selenoid_login = os.getenv("SELENOID_LOGIN")
-    selenoid_pass = os.getenv("SELENOID_PASS")
+    options.capabilities.update(capabilities)
 
-    options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
         command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
 
     browser.config.driver = driver
-
     yield browser
 
     attach.add_screenshot(browser)
@@ -37,17 +36,18 @@ def setup_browser():
     attach.add_html(browser)
     attach.add_video(browser)
 
-    browser.quit()
+    driver.quit()
 
 
 @pytest.fixture(scope="session", autouse=True)
 def load_env():
     load_dotenv()
 
-@pytest.fixture(scope="function", autouse=True)
-def open_browser():
-    browser.open('https://demoqa.com/automation-practice-form')
-    yield
-    browser.quit()
+
+#@pytest.fixture(scope="function", autouse=True)
+#def open_browser():
+    #browser.open('https://demoqa.com/automation-practice-form')
+    #yield
+    #browser.quit()
 
 
