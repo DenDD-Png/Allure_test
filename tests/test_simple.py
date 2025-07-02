@@ -1,5 +1,6 @@
 import allure
 from selene import have, by
+from model.conftest import setup_browser
 
 
 @allure.title("Successful fill form")
