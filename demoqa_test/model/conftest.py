@@ -26,24 +26,21 @@ def setup_browser(request):
     browser.config.driver = driver
     yield browser
 
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_html(browser)
+    attach.add_video(browser)
+
+
 
 @pytest.fixture(scope="function", autouse=True)
 def open_browser(setup_browser):
     browser = setup_browser
     browser.open('https://demoqa.com/automation-practice-form')
     yield
-
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_html(browser)
-    attach.add_video(browser)
-
     browser.quit()
 
 @pytest.fixture(scope="session", autouse=True)
 def load_env():
     load_dotenv()
 
-selenoid_login = os.getenv("SELENOID_LOGIN")
-selenoid_pass = os.getenv("SELENOID_PASS")
-selenoid_url = os.getenv("SELENOID_URL")
