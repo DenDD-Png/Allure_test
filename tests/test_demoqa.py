@@ -1,7 +1,4 @@
-from selene import browser
 from demoqa_test.page.registration_page import RegistrationPage
-import pytest
-from demoqa_test.model.conftest import open_browser
 
 
 def test_registration(open_browser):

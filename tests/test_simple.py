@@ -1,6 +1,6 @@
 import allure
 from selene import have, by
-from demoqa_test.model.conftest import setup_browser
+
 
 @allure.title("Successful fill form")
 def test_successful(setup_browser):
